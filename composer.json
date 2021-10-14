@@ -1,5 +1,5 @@
 {
-    "name": "pmg/tactician-to-messenger",
+    "name": "pmg/migrate-tactician",
     "description": "Refactor tactician command handlers to symfony handlers",
     "type": "project",
     "license": "PROPRIETARY",
@@ -11,11 +11,16 @@
     ],
     "require": {
         "laminas/laminas-code": "^4.4",
-        "symfony/console": "^5.3"
+        "symfony/console": "^4.4 || ^5.3"
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "PMG\\MigrateTactician\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PMG\\MigrateTactician\\Test\\": "test/"
         }
     }
 }

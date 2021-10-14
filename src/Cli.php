@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App;
+namespace PMG\MigrateTactician;
 
 use Symfony\Component\Console\Application;
 use App\Command\ExtractHandlersCommand;
