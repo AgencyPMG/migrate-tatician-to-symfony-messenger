@@ -1,0 +1,21 @@
+{
+    "name": "pmg/tactician-to-messenger",
+    "description": "Refactor tactician command handlers to symfony handlers",
+    "type": "project",
+    "license": "PROPRIETARY",
+    "authors": [
+        {
+            "name": "Christopher Davis",
+            "email": "chris@pmg.com"
+        }
+    ],
+    "require": {
+        "laminas/laminas-code": "^4.4",
+        "symfony/console": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
