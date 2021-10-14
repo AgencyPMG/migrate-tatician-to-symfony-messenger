@@ -27,8 +27,7 @@ class HandlerRefactor
         ];
         foreach ($handlerPrototype->getMethods() as $method) {
             if ($this->isHandleMethod($method->getName())) {
-                $hc = $classes[] = $this->generateHandlerClass(clone $method, $baseClass, $handler);
-                echo $hc->generate();
+                $classes[] = $this->generateHandlerClass(clone $method, $baseClass, $handler);
             }
         }
 

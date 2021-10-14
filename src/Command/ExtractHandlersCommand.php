@@ -48,6 +48,12 @@ class ExtractHandlersCommand extends Command
             InputOption::VALUE_NONE,
             'set this to avoid declaring strict types on the file',
         );
+        $this->addOption(
+            'dry-run',
+            'd',
+            InputOption::VALUE_NONE,
+            'output the files to stdout instead of writing them',
+        );
     }
 
     protected function execute(InputInterface $in, OutputInterface $out) : int
@@ -60,7 +66,14 @@ class ExtractHandlersCommand extends Command
         ));
 
         foreach ($files as $file) {
-            echo $file->generate();
+            if ($in->getOption('dry-run')) {
+                echo $file->generate();
+            } else {
+                if (!is_dir(dirname($file->getFilename()))) {
+                    mkdir(dirname($file->getFilename()));
+                }
+                $file->write();
+            }
         }
 
         return 0;        
