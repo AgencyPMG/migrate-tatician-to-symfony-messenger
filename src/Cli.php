@@ -3,7 +3,7 @@
 namespace PMG\MigrateTactician;
 
 use Symfony\Component\Console\Application;
-use App\Command\ExtractHandlersCommand;
+use PMG\MigrateTactician\Command\ExtractHandlersCommand;
 
 class Cli extends Application
 {
@@ -22,7 +22,9 @@ class Cli extends Application
     protected function getDefaultCommands() : array
     {
         return array_merge(parent::getDefaultCommands(), [
-            new ExtractHandlersCommand(),
+            new ExtractHandlersCommand(
+                new HandlerRefactor()
+            ),
         ]);
     }
 }

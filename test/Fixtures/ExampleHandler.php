@@ -11,14 +11,25 @@ class ExampleHandler
         $this->collab = $collab;
     }
 
-    public function handleCommandOne(CommandOne $command)
+    public function handleCommandOne(CommandOne $command) : CommandOne
     {
         $this->collab->doThings();
+        return $command;
     }
 
-    public function handleCommandTwo(CommandTwo $command)
+    /**
+     * docblock here!
+     */
+    public function handleCommandTwo(CommandTwo $command) : CommandTwo
     {
         $this->privateMethod();
+
+        return $command;
+    }
+
+    public function handleCommandThree(CommandThree $command) : void
+    {
+        // do stuff
     }
 
     private function privateMethod()
