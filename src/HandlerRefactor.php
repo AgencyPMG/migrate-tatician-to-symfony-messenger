@@ -97,7 +97,6 @@ class HandlerRefactor
         $typeParts = explode('\\', $param->getType());
         $commandName = array_pop($typeParts);
 
-        $bcMethod = $this->generateBackCompatMethod($method);
         $generator = new ClassGenerator(
             $commandName.'Handler',
             $parent->getNamespaceName()
@@ -105,26 +104,9 @@ class HandlerRefactor
         $generator
             ->setExtendedClass($parent->getNamespaceName().'\\'.$parent->getName())
             ->addMethodFromGenerator($method->setName('__invoke'))
-            ->addMethodFromGenerator($bcMethod)
             ;
 
         return $generator;
-    }
-
-    private function generateBackCompatMethod(MethodGenerator $method) : MethodGenerator
-    {
-        $bc = new MethodGenerator($method->getName(), $method->getParameters());
-        $bc->setVisibility(MethodGenerator::VISIBILITY_PUBLIC);
-        $bc->setReturnType($method->getReturnType());
-
-        $invokeParams = [];
-        foreach ($method->getParameters() as $param) {
-            $invokeParams[] = '$'.$param->getName();
-        }
-        $invokeCall = sprintf('$this->__invoke(%s);', implode(', ', $invokeParams));
-        $bc->setBody('void' === (string) $method->getReturnType() ? $invokeCall : ('return '.$invokeCall));
-
-        return $bc;
     }
 
     private function isPrivate(AbstractMemberGenerator $member) : bool
