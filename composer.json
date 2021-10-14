@@ -9,6 +9,9 @@
             "email": "chris@pmg.com"
         }
     ],
+    "bin": [
+        "bin/tactician-to-messenger"
+    ],
     "require": {
         "laminas/laminas-code": "^4.4",
         "symfony/console": "^4.4 || ^5.3"
