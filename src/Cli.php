@@ -3,6 +3,7 @@
 namespace App;
 
 use Symfony\Component\Console\Application;
+use App\Command\ExtractHandlersCommand;
 
 class Cli extends Application
 {
@@ -13,5 +14,15 @@ class Cli extends Application
         $cli = new self(self::NAME);
 
         return $cli;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getDefaultCommands() : array
+    {
+        return array_merge(parent::getDefaultCommands(), [
+            new ExtractHandlersCommand(),
+        ]);
     }
 }
